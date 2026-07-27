@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>binstore - Đại Siêu Thị eSIM Nhật Bản | DATA THẢ GA</title>
+    <!-- Tailwind CSS qua CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate On Scroll (AOS) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom Font - Poppins cho hiện đại */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+
+        /* Hiệu ứng Gradient Background chạy liên tục */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-bg {
+            background: linear-gradient(-45deg, #1e1b4b, #312e81, #4f46e5, #4338ca);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        /* Hiệu ứng Glowing Border cho các nút và banner */
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px #4f46e5; }
+            50% { box-shadow: 0 0 20px #818cf8; }
+            100% { box-shadow: 0 0 5px #4f46e5; }
+        }
+        .animate-glow {
+            animation: glowing 2s infinite;
+        }
+
+        /* Hiệu ứng chữ phát sáng */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Khung hình họa kỹ thuật số (không dùng icon) */
+        .network-grid {
+            background-image: radial-gradient(#4f46e5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased overflow-x-hidden">
+
+    <!-- HIỆU ỨNG NỀN KỸ THUẬT SỐ TOÀN TRANG -->
+    <div class="fixed inset-0 network-grid opacity-10 pointer-events-none z-0"></div>
+
+    <main class="relative z-10">
+
+        <!-- =========================================
+             SECTION 1: HERO - SỰ KHỞI ĐẦU HOÀNH TRÁNG
+             ========================================= -->
+        <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 animate-gradient-bg relative">
+            
+            <!-- Hiệu ứng đồ họa trừu tượng (vòng tròn phát sáng) -->
+            <div class="absolute inset-0 flex justify-center items-center pointer-events-none overflow-hidden">
+                <div class="w-[500px] h-[500px] border-4 border-indigo-500/20 rounded-full animate-pulse opacity-50"></div>
+                <div class="w-[700px] h-[700px] border-2 border-indigo-400/10 rounded-full animate-pulse delay-100 opacity-30 absolute"></div>
+            </div>
+
+            <!-- Tên cửa hàng & Khẩu hiệu chính -->
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-block bg-white/10 text-yellow-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest backdrop-blur-sm mb-4">Du Lịch Nhật Bản 4G/5G</span>
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white tracking-tighter glow-text">binstore</h1>
+                <p class="text-3xl md:text-5xl font-extrabold mt-6 text-yellow-300 leading-tight">Vừa Rẻ Vừa Khoẻ<br><span class="text-white">DATA THẢ GA</span></p>
+            </div>
+
+            <!-- Khối Đồ họa Mô phỏng Kết nối -->
+            <div data-aos="zoom-in" data-aos-delay="500" data-aos-duration="1000" class="my-16 relative">
+                <div class="w-64 h-64 bg-slate-900 rounded-3xl p-6 flex flex-col justify-between shadow-2xl border border-indigo-500/30 animate-glow">
+                    <div class="flex justify-between items-start">
+                        <div class="text-indigo-400 font-bold text-lg">binstore eSIM</div>
+                        <div class="w-8 h-8 rounded-full bg-yellow-400 animate-pulse"></div>
+                    </div>
+                    <div class="text-5xl font-extrabold text-white tracking-widest">5G<span class="text-indigo-500">+++</span></div>
+                    <div class="w-full h-1.5 bg-indigo-500/30 rounded-full overflow-hidden">
+                        <div class="w-full h-full bg-yellow-400 animate-pulse" style="animation-duration: 1.5s;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nút Action chính -->
+            <div data-aos="fade-up" data-aos-delay="800" class="w-full max-w-sm">
+                <a href="#store" class="block w-full bg-yellow-400 text-slate-950 font-extrabold text-lg py-5 rounded-3xl shadow-xl shadow-yellow-900/50 hover:bg-white active:scale-[0.98] transition animate-glow">
+                    Khám Phá Gian Hàng
+                </a>
+            </div>
+        </section>
+
+        <!-- =========================================
+             SECTION 2: FEATURES - VỪA RẺ VỪA KHOẺ
+             ========================================= -->
+        <section id="features" class="py-24 px-6 relative bg-slate-900 border-t border-indigo-900/50">
+            <div class="max-w-7xl mx-auto grid md:grid-grid-cols-2 gap-12 items-center">
+                
+                <!-- Hình họa trừu tượng thay vì icon -->
+                <div data-aos="fade-right" class="relative">
+                    <div class="w-96 h-96 bg-indigo-600 rounded-full flex items-center justify-center text-8xl shadow-2xl opacity-80 border-4 border-indigo-400">
+                        📶
+                    </div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-400 rounded-full flex items-center justify-center text-5xl shadow-lg border-2 border-slate-900">
+                        ⚡
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <span class="text-indigo-400 font-bold uppercase tracking-wider">Hạ Tầng Hiện Đại</span>
+                    <h2 class="text-5xl font-extrabold text-white mt-2 leading-tight">Kết Nối Mạnh Mẽ<br><span class="text-yellow-300">Giá Rẻ Hủy Diệt</span></h2>
+                    <p class="text-slate-400 mt-6 text-lg leading-relaxed">Tại <span class="font-bold text-white">binstore</span>, chúng tôi phá vỡ mọi giới hạn về giá. eSIM của bạn sẽ được kết nối vào mạng lưới 4G/5G tốc độ cao nhất tại Nhật Bản (Docomo, Softbank, KDDI) với mức giá chỉ bằng một bữa ăn sáng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================
+             SECTION 3: PROMO BANNERS - CÁC BANNER KHỦNG
+             ========================================= -->
+        <section id="store" class="py-24 px-6 bg-slate-950">
+            <div class="max-w-7xl mx-auto">
+                
+                <div data-aos="fade-up" class="text-center mb-16">
+                    <h2 class="text-5xl font-extrabold text-white">SIÊU ƯU ĐÃI ĐỘC QUYỀN</h2>
+                    <p class="text-slate-400 mt-4 text-xl">Chỉ có tại binstore - Săn ngay gói cước dành riêng cho bạn!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- BANNER 1: GÓI CƠ BẢN -->
+                    <div data-aos="flip-left" data-aos-delay="100" class="group bg-slate-900 p-8 rounded-3xl shadow-xl shadow-slate-900/50 border border-slate-800 transition-all hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-900/50 relative overflow-hidden flex flex-col justify-between h-full min-h-[450px]">
+                        <div class="absolute top-0 right-0 p-4">
+                            <span class="bg-yellow-400 text-slate-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Mới</span>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center text-4xl mb-6 border border-slate-700">🇯🇵</div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-yellow-300 transition">Nhật Bản Siêu Tốc</h3>
+                            <p class="text-slate-400 mt-2 text-sm leading-relaxed">Trải nghiệm 5G mượt mà, phù hợp du lịch ngắn ngày.</p>
+                        </div>
+                        <div class="mt-8">
+                            <div class="text-4xl font-extrabold text-yellow-300">120.000<span class="text-lg text-slate-400"> đ</span></div>
+                            <button onclick="buyEsim('Gói Nhật Bản Siêu Tốc')" class="w-full bg-slate-700 text-white font-bold py-4 rounded-xl mt-6 group-hover:bg-yellow-400 group-hover:text-slate-950 transition">Chọn Gói</button>
+                        </div>
+                    </div>
+
+                    <!-- BANNER 2: GÓI PRO - BÁN CHẠY NHẤT -->
+                    <div data-aos="flip-left" data-aos-delay="300" class="group bg-indigo-600 p-8 rounded-3xl shadow-2xl shadow-indigo-900/50 border-4 border-yellow-400 relative overflow-hidden flex flex-col justify-between h-full min-h-[450px] scale-105 animate-glow">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 text-slate-950 flex items-center justify-center font-extrabold text-sm rounded-full transform rotate-12 uppercase tracking-wider">Bán Chạy</div>
+                        <div>
+                            <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-4xl mb-6 border border-white/20">🗼</div>
+                            <h3 class="text-2xl font-bold text-white glow-text">Pro DATA THẢ GA</h3>
+                            <p class="text-indigo-100 mt-2 text-sm leading-relaxed">Không giới hạn dung lượng, thỏa sức Livestream, lướt Tóp Tóp.</p>
+                        </div>
+                        <div class="mt-8">
+                            <div class="text-4xl font-extrabold text-white glow-text">450.000<span class="text-lg text-indigo-100"> đ</span></div>
+                            <p class="text-indigo-100 text-xs mt-1">(Gói 7 Ngày - Giá Hủy Diệt)</p>
+                            <button onclick="buyEsim('Gói Pro DATA THẢ GA')" class="w-full bg-yellow-400 text-slate-950 font-extrabold py-4 rounded-xl mt-6 hover:bg-white transition">Mua Ngay</button>
+                        </div>
+                    </div>
+
+                    <!-- BANNER 3: GÓI VIP DÀI NGÀY -->
+                    <div data-aos="flip-left" data-aos-delay="500" class="group bg-slate-900 p-8 rounded-3xl shadow-xl shadow-slate-900/50 border border-slate-800 transition-all hover:border-indigo-400 hover:shadow-2xl hover:shadow-indigo-900/50 relative overflow-hidden flex flex-col justify-between h-full min-h-[450px]">
+                        <div>
+                            <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center text-4xl mb-6 border border-slate-700">🎎</div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-indigo-300 transition">VIP Khám Phá Nhật Bản</h3>
+                            <p class="text-slate-400 mt-2 text-sm leading-relaxed">Data cực khủng (3GB/Ngày) cho chuyến đi dài ngày.</p>
+                        </div>
+                        <div class="mt-8">
+                            <div class="text-4xl font-extrabold text-indigo-400">750.000<span class="text-lg text-slate-400"> đ</span></div>
+                            <p class="text-slate-400 text-xs mt-1">(Gói 14 Ngày)</p>
+                            <button onclick="buyEsim('Gói VIP Khám Phá')" class="w-full bg-slate-700 text-white font-bold py-4 rounded-xl mt-6 group-hover:bg-indigo-600 transition">Chọn Gói</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================
+             SECTION 4: ĐĂNG NHẬP / ĐĂNG KÝ (AUTH)
+             ========================================= -->
+        <section id="auth" class="py-24 px-6 bg-slate-900 border-t border-slate-800">
+            <div data-aos="zoom-in" class="max-w-2xl mx-auto bg-slate-950 p-12 rounded-3xl shadow-2xl border border-slate-800">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-extrabold text-white">Bắt Đầu Trải Nghiệm</h2>
+                    <p class="text-slate-400 mt-2">Đăng nhập hoặc đăng ký để sở hữu eSIM "Khủng" từ binstore</p>
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate-400 mb-1.5 tracking-wider">Email Của Bạn</label>
+                        <input type="email" id="email" placeholder="email@vi-du.com" class="w-full px-5 py-4 rounded-xl bg-slate-900 border border-slate-700 focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 text-white text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate-400 mb-1.5 tracking-wider">Mật Khẩu</label>
+                        <input type="password" id="password" placeholder="••••••••" class="w-full px-5 py-4 rounded-xl bg-slate-900 border border-slate-700 focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 text-white text-lg">
+                    </div>
+                    <button onclick="handleLogin()" class="w-full bg-indigo-600 text-white font-extrabold text-lg py-5 rounded-2xl shadow-lg shadow-indigo-900/50 hover:bg-indigo-700 active:scale-[0.99] transition mt-6 animate-glow">
+                        Tiếp Tục
+                    </button>
+                    <button onclick="alert('Chức năng Đăng ký sẽ được phát triển sau')" class="w-full text-slate-400 text-sm py-2 hover:text-white transition">Chưa có tài khoản? Đăng ký ngay</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER ĐƠN GIẢN -->
+    <footer class="py-10 text-center bg-slate-950 border-t border-slate-900 relative z-10">
+        <p class="text-sm text-slate-500 tracking-wider">© 2026 binstore. All rights reserved.</p>
+        <p class="text-xs text-slate-600 mt-2">Đại siệu thị eSIM Nhật Bản | Vừa Rẻ Vừa Khoẻ, DATA THẢ GA.</p>
+    </footer>
+
+    <!-- =========================================
+         JAVASCRIPT CODE
+         ========================================= -->
+    <!-- Animate On Scroll (AOS) JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Khởi tạo thư viện AOS
+        AOS.init({
+            duration: 800, // Thời gian hiệu lực mặc định
+            easing: 'ease-out-back', // Loại hiệu ứng mặc định
+            once: true // Chỉ chạy animation một lần khi cuộn qua
+        });
+
+        function handleLogin() {
+            const email = document.getElementById('email').value;
+            if(!email) {
+                alert('Vui lòng nhập email của bạn!');
+                return;
+            }
+            alert('Đăng nhập thành công với email: ' + email + '\n(Chức năng chuyển vào gian hàng thật sẽ được tích hợp ở bước sau!)');
+            // Sau này sẽ tích hợp API đăng nhập thật
+        }
+
+        function buyEsim(packageName) {
+            alert('Đã chọn: ' + packageName + '\n(Vui lòng đăng nhập để tiếp tục thanh toán và nhận mã QR qua email!)');
+            // Cuộn xuống phần đăng nhập
+            document.getElementById('auth').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
