@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <!-- ======================================================= -->
+    <!-- BINSTORE - HỆ SINH THÁI eSIM NHẬT BẢN ĐẲNG CẤP           -->
+    <!-- Tối ưu hóa cho tốc độ, UI/UX Glassmorphism & SEO        -->
+    <!-- ======================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>binstore | eSIM Nhật Bản - Data Thả Ga, Giá Từ 2 Sên 2</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="eSIM Nhật Bản tốc độ cao 5G, không giới hạn dung lượng, kích hoạt tự động 30s.">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <!-- Thư viện lõi (Tailwind, AlpineJS, AOS, FontAwesome) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Cấu hình Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 900: '#0a0a0a', 800: '#171717', 700: '#262626' },
+                        gold: { DEFAULT: '#FACC15', hover: '#EAB308' }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 15px rgba(250,204,21,0.5))' },
+                            '50%': { opacity: .5, filter: 'drop-shadow(0 0 5px rgba(250,204,21,0.2))' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body { background-color: #050505; color: #e5e5e5; overflow-x: hidden; }
+        
+        /* Hiệu ứng Kính mờ (Glassmorphism) */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-nav { background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        
+        /* Chữ Gradient */
+        .text-gradient { background: linear-gradient(135deg, #fff 0%, #a3a3a3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gold { background: linear-gradient(135deg, #FDE047 0%, #D97706 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Thanh cuộn (Scrollbar) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FACC15; }
+
+        /* Nền Grid kỹ thuật số */
+        .bg-grid { background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+        
+        /* Ẩn Auth Modal mặc định */
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="antialiased selection:bg-yellow-400 selection:text-black" x-data="{ authModalOpen: false, authTab: 'login', mobileMenuOpen: false }">
+
+    <!-- HIỆU ỨNG NỀN GRID ĐỘNG -->
+    <div class="fixed inset-0 z-[-1] bg-grid opacity-20 pointer-events-none mask-image: linear-gradient(to bottom, black, transparent)"></div>
+
+    <!-- ========================================== -->
+    <!-- NAVBAR (THANH ĐIỀU HƯỚNG) CÓ MOBILE MENU   -->
+    <!-- ========================================== -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="#" class="text-3xl font-display font-black text-white tracking-tighter flex items-center gap-2">
+                <i class="fa-solid fa-signal text-yellow-400"></i>
+                <div>bin<span class="text-yellow-400">store</span></div>
+            </a>
+            
+            <!-- Menu PC -->
+            <div class="hidden lg:flex space-x-10 text-sm font-semibold uppercase tracking-widest text-slate-300">
+                <a href="#features" class="hover:text-white transition">Tính Năng</a>
+                <a href="#pricing" class="hover:text-yellow-400 transition text-yellow-400/80">Bảng Giá</a>
+                <a href="#how-it-works" class="hover:text-white transition">Quy trình</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+            
+            <!-- Auth Buttons PC -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <button @click="authModalOpen = true; authTab = 'login'" class="px-5 py-2.5 font-bold text-slate-300 hover:text-white text-sm uppercase tracking-wider transition-all hover:scale-105 focus:outline-none">
+                    Đăng Nhập
+                </button>
+                <button @click="authModalOpen = true; authTab = 'register'" class="group relative inline-flex items-center justify-center px-6 py-2.5 font-bold text-brand-900 bg-yellow-400 rounded-full overflow-hidden hover:bg-yellow-300 transition-all shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.6)] focus:outline-none">
+                    <span class="relative z-10 text-sm uppercase tracking-wider">Mở Khóa Giá Sỉ <i class="fa-solid fa-lock-open ml-2 opacity-70 group-hover:animate-bounce"></i></span>
+                </button>
+            </div>
+
+            <!-- Nút Hamburger Mobile -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-white text-2xl focus:outline-none">
+                <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div x-show="mobileMenuOpen" x-collapse class="lg:hidden bg-brand-900 border-b border-white/10 absolute w-full">
+            <div class="flex flex-col px-6 py-4 space-y-4 text-sm font-bold uppercase tracking-wider text-slate-300">
+                <a @click="mobileMenuOpen = false" href="#features" class="hover:text-white py-2">Tính Năng</a>
+                <a @click="mobileMenuOpen = false" href="#pricing" class="hover:text-yellow-400 py-2">Bảng Giá Kín</a>
+                <a @click="mobileMenuOpen = false" href="#how-it-works" class="hover:text-white py-2">Cách Hoạt Động</a>
+                <div class="h-px bg-white/10 my-2"></div>
+                <button @click="mobileMenuOpen = false; authModalOpen = true; authTab = 'login'" class="text-left py-2 text-white">Đăng Nhập</button>
+                <button @click="mobileMenuOpen = false; authModalOpen = true; authTab = 'register'" class="bg-yellow-400 text-brand-900 py-3 rounded-lg text-center shadow-lg">Đăng Ký Ngay</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION (MÀN HÌNH CHÍNH)               -->
+    <!-- ========================================== -->
+    <section class="relative pt-40 pb-32 lg:pt-56 lg:pb-40 overflow-hidden border-b border-white/5">
+        <!-- Vòng sáng background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+            
+            <div data-aos="fade-down" data-aos-duration="1000" class="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-8 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-300 font-jp">Hạ tầng API Docomo & Softbank</span>
+            </div>
+            
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-6xl md:text-8xl lg:text-[7rem] font-display font-black text-white tracking-tighter leading-[1.1] mb-8">
+                Data Thả Ga. <br>
+                <span class="text-gold">Tự Động 100%.</span>
+            </h1>
+            
+            <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-slate-400 max-w-2xl font-light leading-relaxed mb-12">
+                Xóa bỏ rào cản trung gian. Mua eSIM du lịch Nhật Bản với giá sỉ rẻ nhất thị trường. Hệ thống quét Auto-Banking, trả mã QR ngay lập tức vào email.
+            </p>
+            
+            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
+                <a href="#pricing" class="bg-yellow-400 hover:bg-yellow-500 text-brand-900 px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] transition-all shadow-[0_0_40px_rgba(250,204,21,0.3)] hover:-translate-y-1 w-full sm:w-auto text-center">
+                    Khám Phá Bảng Giá
+                </a>
+                <a href="#how-it-works" class="glass px-10 py-5 rounded-2xl font-bold text-sm text-white uppercase tracking-[0.2em] hover:bg-white/10 transition-all w-full sm:w-auto text-center">
+                    Quy Trình 3 Bước
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ĐỐI TÁC & THỐNG KÊ KỸ THUẬT                 -->
+    <!-- ========================================== -->
+    <section class="bg-brand-900/50 backdrop-blur-sm relative z-10 border-b border-white/5 py-8">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60">
+            <div class="text-center flex flex-col items-center justify-center">
+                <i class="fa-solid fa-server text-3xl mb-2 text-slate-400"></i>
+                <div class="text-xs uppercase tracking-widest font-bold">API Response &lt; 1s</div>
+            </div>
+            <div class="text-center flex flex-col items-center justify-center">
+                <i class="fa-brands fa-apple text-3xl mb-2 text-slate-400"></i>
+                <div class="text-xs uppercase tracking-widest font-bold">Apple & Android</div>
+            </div>
+            <div class="text-center flex flex-col items-center justify-center font-jp">
+                <span class="text-3xl font-black mb-1 text-slate-400">DOCOMO</span>
+                <div class="text-xs uppercase tracking-widest font-bold">Tier 1 Network</div>
+            </div>
+            <div class="text-center flex flex-col items-center justify-center font-jp">
+                <span class="text-3xl font-black mb-1 text-slate-400">SOFTBANK</span>
+                <div class="text-xs uppercase tracking-widest font-bold">5G Coverage</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: TÍNH NĂNG NỔI BẬT                  -->
+    <!-- ========================================== -->
+    <section id="features" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-display font-black text-white mb-6">Công nghệ vượt tầm</h2>
+                <p class="text-slate-400 text-lg">binstore không chỉ bán lẻ, chúng tôi xây dựng hạ tầng tự động khép kín.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="glass p-8 rounded-3xl hover:border-yellow-400/50 transition-colors group">
+                    <div class="w-14 h-14 bg-yellow-400/10 rounded-2xl flex items-center justify-center text-yellow-400 text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Tự động hóa thanh toán</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Kết nối trực tiếp API Ngân hàng. Khách hàng quét mã VietQR, hệ thống nhận diện số dư và xử lý đơn hàng ngay trong đêm mà không cần con người.</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="glass p-8 rounded-3xl hover:border-indigo-400/50 transition-colors group">
+                    <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fa-solid fa-globe"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">IP nội địa Nhật Bản</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Không bị bóp băng thông, không bị chặn các ứng dụng nội địa. Trải nghiệm Tóp Tóp, lướt Map mượt mà như người bản xứ.</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="glass p-8 rounded-3xl hover:border-green-400/50 transition-colors group">
+                    <div class="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-400 text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Bảo mật thông tin tối đa</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Dữ liệu người dùng được mã hóa. Mã QR chỉ gửi duy nhất về Email đã xác thực của bạn, ngăn chặn hoàn toàn việc rò rỉ mã kích hoạt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: BẢNG GIÁ KÍN (HOOK)                -->
+    <!-- ========================================== -->
+    <section id="pricing" class="py-32 relative overflow-hidden bg-brand-900 border-y border-white/5">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-500/5 via-transparent to-transparent pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            
+            <div data-aos="zoom-in">
+                <span class="bg-white/5 border border-white/10 text-yellow-400 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest mb-6 inline-block shadow-lg">
+                    <i class="fa-solid fa-eye-slash mr-2"></i> Chế độ ẩn danh
+                </span>
+                <h2 class="text-5xl md:text-7xl font-display font-black text-white mb-6 leading-tight">
+                    eSIM Full Dung Lượng <br>
+                    <span class="text-gold">Chỉ Từ 2 Sên 2</span>
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+                    Tại binstore, chúng tôi đập tan mọi mức giá bán lẻ truyền thống. Bảng giá sỉ siêu rẻ này chỉ hiển thị dành riêng cho thành viên đã xác thực.
+                </p>
+            </div>
+
+            <!-- Nút Gọi Auth Modal -->
+            <button @click="authModalOpen = true; authTab = 'register'" data-aos="fade-up" class="glass rounded-3xl p-2 inline-flex flex-col md:flex-row items-center gap-4 bg-brand-800/80 shadow-2xl relative overflow-hidden group w-full md:w-auto text-left hover:border-yellow-400/50 transition-colors focus:outline-none">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"></div>
+                <div class="px-8 py-4 hidden md:block">
+                    <div class="text-sm font-black text-white uppercase tracking-wider mb-1">Mở Khóa Gian Hàng</div>
+                    <div class="text-xs text-slate-400 font-medium">Yêu cầu đăng ký tài khoản (Miễn phí)</div>
+                </div>
+                <div class="w-full md:w-auto bg-yellow-400 text-brand-900 font-black px-12 py-5 rounded-2xl uppercase tracking-widest flex items-center justify-center transition-transform group-hover:scale-[0.98]">
+                    Đăng Ký Khám Phá <i class="fa-solid fa-arrow-right-to-bracket ml-3"></i>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: QUY TRÌNH KÍCH HOẠT                -->
+    <!-- ========================================== -->
+    <section id="how-it-works" class="py-32 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-4xl font-display font-black text-white mb-4">Quy trình <span class="text-indigo-400">Không Chạm</span></h2>
+                <p class="text-slate-400">Từ lúc click chuột đến khi lên mạng chỉ mất vỏn vẹn vài phút.</p>
+            </div>
+            
+            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
+                
+                <!-- Bước 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active" data-aos="fade-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-brand-900 bg-yellow-400 text-brand-900 font-black shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_20px_rgba(250,204,21,0.5)] z-10">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl group-hover:border-yellow-400/30 transition-colors">
+                        <h3 class="font-bold text-white text-lg mb-2">Thanh toán Auto-Banking</h3>
+                        <p class="text-sm text-slate-400">Chọn gói cước và chuyển khoản đúng cú pháp hiển thị. Hệ thống tự quét biến động số dư.</p>
+                    </div>
+                </div>
+                
+                <!-- Bước 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group" data-aos="fade-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-brand-900 bg-indigo-500 text-white font-black shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl group-hover:border-indigo-400/30 transition-colors">
+                        <h3 class="font-bold text-white text-lg mb-2">Gọi API Cấp Mã Ngầm</h3>
+                        <p class="text-sm text-slate-400">Ngay khi nhận tiền, Server binstore gửi request lấy mã QR trực tiếp từ kho số của nhà mạng.</p>
+                    </div>
+                </div>
+
+                <!-- Bước 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group" data-aos="fade-up">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-brand-900 bg-green-500 text-white font-black shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl group-hover:border-green-400/30 transition-colors">
+                        <h3 class="font-bold text-white text-lg mb-2">Quét & Vi vu</h3>
+                        <p class="text-sm text-slate-400">Mã QR trả về email. Chỉ cần vào Cài đặt di động, quét mã là có 5G sử dụng ngay lập tức.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION: FAQ (CÂU HỎI THƯỜNG GẶP)           -->
+    <!-- ========================================== -->
+    <section id="faq" class="py-32 bg-brand-900 border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6" x-data="{ activeAccordion: '' }">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-display font-black text-white mb-4">Hỏi đáp nhanh</h2>
+            </div>
+            
+            <div class="space-y-4" data-aos="fade-up">
+                <!-- FAQ 1 -->
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button @click="activeAccordion = activeAccordion === '1' ? '' : '1'" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+                        <span>Máy lock (khóa mạng) có dùng được eSIM không?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300" :class="activeAccordion === '1' ? 'rotate-180 text-yellow-400' : 'text-slate-500'"></i>
+                    </button>
+                    <div x-show="activeAccordion === '1'" x-collapse>
+                        <div class="px-6 pb-5 text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                            Không. Điện thoại của bạn bắt buộc phải là phiên bản Quốc tế (Unlocked). Nếu bạn mang máy Lock sang Nhật, bạn không thể thêm cấu hình eSIM của nhà mạng khác vào được.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button @click="activeAccordion = activeAccordion === '2' ? '' : '2'" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center focus:outline-none">
+                        <span>Làm sao để biết thời gian sử dụng bắt đầu đếm?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300" :class="activeAccordion === '2' ? 'rotate-180 text-yellow-400' : 'text-slate-500'"></i>
+                    </button>
+                    <div x-show="activeAccordion === '2'" x-collapse>
+                        <div class="px-6 pb-5 text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                            Gói cước chỉ bắt đầu tính giờ khi bạn đáp máy bay xuống Nhật Bản và eSIM bắt được sóng nội địa thành công. Bạn hoàn toàn có thể quét mã và cài đặt sẵn khi còn ở Việt Nam.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- FOOTER CHUẨN ĐẲNG CẤP                       -->
+    <!-- ========================================== -->
+    <footer class="bg-[#020202] border-t border-white/5 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            
+            <div class="md:col-span-5">
+                <a href="#" class="text-4xl font-display font-black text-white tracking-tighter block mb-6">
+                    bin<span class="text-yellow-400">store</span>
+                </a>
+                <p class="text-slate-400 leading-relaxed pr-8 mb-8 text-sm">
+                    Đại lý cung cấp giải pháp viễn thông số 1. Nhanh chóng, tự động, bảo mật. Binstore cam kết mang đến Data thả ga với chi phí tối giản nhất.
+                </p>
+                <div class="flex space-x-4">
+                    <!-- Link Facebook -->
+                    <a href="https://www.facebook.com/share/17yGWuv9n2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-lg">
+                        <i class="fa-brands fa-facebook-f text-xl"></i>
+                    </a>
+                    <!-- Link Zalo Ẩn Số -->
+                    <a href="https://zalo.me/0898655137" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-500 hover:border-blue-500 transition-all shadow-lg">
+                        <span class="font-black text-sm tracking-tighter">Zalo</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-3">
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Sản Phẩm</h4>
+                <ul class="space-y-4 text-sm text-slate-400 font-medium">
+                    <li><button @click="authModalOpen = true" class="hover:text-yellow-400 transition focus:outline-none">Khám phá Bảng giá sỉ</button></li>
+                    <li><a href="#how-it-works" class="hover:text-yellow-400 transition">Hướng dẫn kích hoạt</a></li>
+                    <li><a href="#faq" class="hover:text-yellow-400 transition">Giải đáp lỗi thường gặp</a></li>
+                </ul>
+            </div>
+            
+            <div class="md:col-span-4">
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Kênh Hỗ Trợ Kỹ Thuật</h4>
+                <p class="text-slate-400 text-sm mb-6">Liên hệ trực tiếp để được xử lý sự cố kết nối 24/7.</p>
+                <ul class="space-y-4 text-sm text-slate-300 font-medium">
+                    <li>
+                        <a href="https://www.facebook.com/share/17yGWuv9n2/?mibextid=wwXIfr" target="_blank" class="flex items-center hover:text-yellow-400 transition-colors group">
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mr-3 group-hover:bg-blue-600/20"><i class="fa-brands fa-facebook text-blue-500"></i></div>
+                            Nhắn tin qua Fanpage
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://zalo.me/0898655137" target="_blank" class="flex items-center hover:text-yellow-400 transition-colors group">
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mr-3 group-hover:bg-blue-500/20"><i class="fa-solid fa-comment-dots text-blue-400"></i></div>
+                            Chat trực tiếp Zalo
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 font-medium tracking-wide">
+            <p>© 2026 binstore Inc. Vận hành bởi hệ thống tự động hóa.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-slate-400 transition">Điều khoản</a>
+                <a href="#" class="hover:text-slate-400 transition">Bảo mật</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODAL AUTH (ĐĂNG NHẬP / ĐĂNG KÝ POPUP)      -->
+    <!-- Móc nối với form action Python phía sau     -->
+    <!-- ========================================== -->
+    <div x-cloak x-show="authModalOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <!-- Nền mờ -->
+        <div x-show="authModalOpen" x-transition.opacity class="fixed inset-0 bg-black/80 backdrop-blur-sm" @click="authModalOpen = false"></div>
+        
+        <!-- Nội dung Modal -->
+        <div x-show="authModalOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="relative z-10 w-full max-w-md bg-brand-900 border border-white/10 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden">
+             
+            <!-- Nút đóng -->
+            <button @click="authModalOpen = false" class="absolute top-4 right-4 text-slate-400 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="p-8">
+                <!-- Header Tabs -->
+                <div class="flex gap-6 mb-8 border-b border-white/10 pb-4">
+                    <button @click="authTab = 'login'" :class="authTab === 'login' ? 'text-white' : 'text-slate-500'" class="text-lg font-bold uppercase tracking-wider transition-colors focus:outline-none relative">
+                        Đăng Nhập
+                        <div x-show="authTab === 'login'" class="absolute -bottom-4 left-0 w-full h-0.5 bg-yellow-400"></div>
+                    </button>
+                    <button @click="authTab = 'register'" :class="authTab === 'register' ? 'text-white' : 'text-slate-500'" class="text-lg font-bold uppercase tracking-wider transition-colors focus:outline-none relative">
+                        Đăng Ký
+                        <div x-show="authTab === 'register'" class="absolute -bottom-4 left-0 w-full h-0.5 bg-yellow-400"></div>
+                    </button>
+                </div>
+
+                <!-- Form Gửi đến Backend (Method POST) -->
+                <form action="/api/auth" method="POST" class="space-y-5">
+                    
+                    <div x-show="authTab === 'register'" style="display: none;">
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-2 tracking-wider">Họ và Tên</label>
+                        <input type="text" name="fullname" placeholder="Nguyễn Văn A" class="w-full bg-brand-800 border border-white/10 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-yellow-400 transition text-sm">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-2 tracking-wider">Email (Để nhận mã QR)</label>
+                        <input type="email" name="email" required placeholder="admin@binstore.vn" class="w-full bg-brand-800 border border-white/10 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-yellow-400 transition text-sm">
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-xs font-bold uppercase text-slate-400 tracking-wider">Mật khẩu</label>
+                        </div>
+                        <input type="password" name="password" required placeholder="••••••••" class="w-full bg-brand-800 border border-white/10 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-yellow-400 transition text-sm">
+                    </div>
+
+                    <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-brand-900 font-black py-4 rounded-xl uppercase tracking-widest transition-all mt-4 text-sm" x-text="authTab === 'login' ? 'Vào Hệ Thống' : 'Tạo Tài Khoản'"></button>
+                </form>
+                
+                <!-- Login Social (Chỉ hiển thị UI cho ngầu) -->
+                <div class="mt-8 pt-6 border-t border-white/10 text-center">
+                    <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-4">Hoặc tiếp tục với</p>
+                    <div class="flex gap-4">
+                        <button class="flex-1 bg-white/5 border border-white/10 hover:bg-white/10 py-3 rounded-xl flex items-center justify-center gap-3 transition">
+                            <i class="fa-brands fa-google text-red-500 text-lg"></i>
+                        </button>
+                        <button class="flex-1 bg-white/5 border border-white/10 hover:bg-white/10 py-3 rounded-xl flex items-center justify-center gap-3 transition">
+                            <i class="fa-brands fa-apple text-white text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Khởi tạo AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+    </script>
+</body>
+</html>
