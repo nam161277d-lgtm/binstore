@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>binstore | Đẳng Cấp eSIM Nhật Bản</title>
+    
+    <!-- Tailwind CSS & Plugins -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter & Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        jp: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 900: '#0a0a0a', 800: '#171717', 700: '#262626', gold: '#FACC15', gold_hover: '#EAB308' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #e5e5e5; overflow-x: hidden; }
+        
+        /* Glassmorphism & Blurs */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-nav { background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        
+        /* Gradients & Text */
+        .text-gradient { background: linear-gradient(135deg, #fff 0%, #a3a3a3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gold { background: linear-gradient(135deg, #FDE047 0%, #D97706 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Animations */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Pricing Card Hover Glow */
+        .pricing-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(250, 204, 21, 0.15); border-color: rgba(250, 204, 21, 0.3); }
+        .pricing-card.vip:hover { box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.4); }
+    </style>
+</head>
+<body class="antialiased selection:bg-yellow-400 selection:text-black">
+
+    <!-- HIỆU ỨNG NỀN HẠT BỤI ĐỘNG -->
+    <div class="fixed inset-0 z-[-1] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-screen pointer-events-none"></div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex justify-between items-center">
+            <a href="#" class="text-3xl font-display font-black text-white tracking-tighter">
+                bin<span class="text-yellow-400">store</span><span class="text-xs font-jp text-slate-500 ml-2 font-normal">ビインストア</span>
+            </a>
+            <div class="hidden md:flex space-x-10 text-sm font-semibold uppercase tracking-widest text-slate-300">
+                <a href="#features" class="hover:text-white transition">Tính Năng</a>
+                <a href="#pricing" class="hover:text-yellow-400 transition text-yellow-400/80">Bảng Giá</a>
+                <a href="#testimonials" class="hover:text-white transition">Đánh Giá</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+            <!-- Trỏ link sang trang đăng nhập -->
+            <a href="auth.html" class="group relative inline-flex items-center justify-center px-8 py-2.5 font-bold text-white bg-white/5 border border-white/10 rounded-full overflow-hidden hover:bg-white/10 transition-all">
+                <span class="relative z-10 text-sm uppercase tracking-wider">Đăng Nhập <i class="fa-solid fa-arrow-right ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i></span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative pt-40 pb-32 lg:pt-56 lg:pb-40 overflow-hidden">
+        <!-- Vòng sáng background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-8 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-300">Hạ tầng trực tiếp Docomo & Softbank</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl lg:text-[7rem] font-display font-black text-white tracking-tighter leading-[1.1] mb-8">
+                    Kết Nối Không Tưởng. <br>
+                    <span class="text-gold">Giá Chạm Đáy.</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed mb-12">
+                    Không phí chuyển vùng, không tháo lắp rườm rà. Sở hữu eSIM 5G Nhật Bản chỉ sau 30 giây thanh toán. Tự động gửi mã QR - Kích hoạt ngay lập tức.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#pricing" class="bg-yellow-400 hover:bg-yellow-500 text-brand-900 px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-[0.2em] transition-all shadow-[0_0_40px_rgba(250,204,21,0.3)] hover:shadow-[0_0_60px_rgba(250,204,21,0.5)] hover:-translate-y-1">
+                        Xem Bảng Giá Hủy Diệt
+                    </a>
+                    <a href="#how-it-works" class="glass px-10 py-5 rounded-2xl font-bold text-sm text-white uppercase tracking-[0.2em] hover:bg-white/10 transition-all">
+                        Cách Thức Hoạt Động
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= THỐNG KÊ (STATS) ================= -->
+    <section class="border-y border-white/5 bg-brand-900/50 backdrop-blur-sm relative z-10">
+        <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/5">
+            <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                <div class="text-4xl font-display font-black text-white mb-2">99.9%</div>
+                <div class="text-xs text-slate-500 uppercase tracking-widest">Độ phủ sóng tại Nhật</div>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-4xl font-display font-black text-white mb-2">30s</div>
+                <div class="text-xs text-slate-500 uppercase tracking-widest">Thời gian cấp mã QR</div>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-4xl font-display font-black text-white mb-2">15,000+</div>
+                <div class="text-xs text-slate-500 uppercase tracking-widest">Khách hàng tin dùng</div>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-4xl font-display font-black text-white mb-2">24/7</div>
+                <div class="text-xs text-slate-500 uppercase tracking-widest">Hỗ trợ kỹ thuật</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PRICING ĐẲNG CẤP (BẢNG GIÁ) ================= -->
+    <section id="pricing" class="py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10" x-data="{ plan: 'ngan' }">
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl md:text-6xl font-display font-black text-white mb-6">Bảng Giá <span class="text-gold">Độc Quyền</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Hệ thống API sỉ trực tiếp giúp binstore mang đến mức giá không đối thủ. Chọn loại hành trình của bạn.</p>
+                
+                <!-- Toggle Switch -->
+                <div class="mt-10 inline-flex glass rounded-full p-1.5 relative">
+                    <button @click="plan = 'ngan'" :class="plan === 'ngan' ? 'bg-white/10 text-white shadow-lg' : 'text-slate-400 hover:text-white'" class="relative z-10 px-8 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300">Du Lịch Ngắn Ngày</button>
+                    <button @click="plan = 'dai'" :class="plan === 'dai' ? 'bg-white/10 text-white shadow-lg' : 'text-slate-400 hover:text-white'" class="relative z-10 px-8 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300">Lưu Trú Dài Hạn (VIP)</button>
+                </div>
+            </div>
+
+            <!-- Khung chứa các Card -->
+            <div class="grid lg:grid-cols-3 gap-8 items-center mt-12">
+                
+                <!-- CARD 1: CƠ BẢN -->
+                <div class="glass pricing-card rounded-3xl p-8 relative overflow-hidden" data-aos="fade-right">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-slate-700"></div>
+                    <div class="mb-8">
+                        <span class="bg-white/5 border border-white/10 text-slate-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Tiết Kiệm</span>
+                        <h3 class="text-3xl font-display font-bold text-white mt-6 mb-2">Lite Japan</h3>
+                        <p class="text-slate-400 text-sm">Phù hợp check-in, dùng Map cơ bản.</p>
+                    </div>
+                    
+                    <div class="mb-8 h-24">
+                        <div x-show="plan === 'ngan'" class="transition-all duration-500">
+                            <span class="text-5xl font-display font-black text-white">120k</span><span class="text-slate-500"> / 3 Ngày</span>
+                            <div class="text-sm text-yellow-400 mt-2 font-medium">1GB Data Tốc độ cao/Ngày</div>
+                        </div>
+                        <div x-show="plan === 'dai'" class="transition-all duration-500" style="display: none;">
+                            <span class="text-5xl font-display font-black text-white">350k</span><span class="text-slate-500"> / 15 Ngày</span>
+                            <div class="text-sm text-yellow-400 mt-2 font-medium">500MB Data Tốc độ cao/Ngày</div>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10 text-sm font-medium text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3 text-lg"></i> Mạng 4G LTE mượt mà</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3 text-lg"></i> Không bóp băng thông ẩn</li>
+                        <li class="flex items-center text-slate-500"><i class="fa-solid fa-xmark mr-3 text-lg"></i> Không hỗ trợ phát Hotspot</li>
+                    </ul>
+                    
+                    <a href="auth.html" class="block w-full text-center bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold py-4 rounded-xl uppercase tracking-widest transition-all">Mua Ngay</a>
+                </div>
+
+                <!-- CARD 2: PRO (BÁN CHẠY NHẤT) -->
+                <div class="glass pricing-card rounded-3xl p-8 relative overflow-hidden transform lg:scale-110 z-10 border-yellow-400/30 bg-brand-800/80 shadow-[0_0_50px_rgba(250,204,21,0.05)]" data-aos="fade-up">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-amber-600"></div>
+                    <div class="absolute top-6 right-6">
+                        <span class="bg-yellow-400 text-brand-900 text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">Bán Chạy Nhất</span>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="w-12 h-12 bg-yellow-400/10 rounded-xl flex items-center justify-center text-yellow-400 mb-4 text-xl"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="text-3xl font-display font-black text-white mb-2 text-gold">PRO THẢ GA</h3>
+                        <p class="text-slate-400 text-sm">Cày phim, Livestream, lướt Tóp Tóp vô tư.</p>
+                    </div>
+                    
+                    <div class="mb-8 h-24">
+                        <div x-show="plan === 'ngan'" class="transition-all duration-500">
+                            <span class="text-6xl font-display font-black text-white">450k</span><span class="text-slate-500"> / 7 Ngày</span>
+                            <div class="text-sm font-bold text-yellow-400 mt-2 bg-yellow-400/10 inline-block px-3 py-1 rounded-md">Không Giới Hạn Data 5G</div>
+                        </div>
+                        <div x-show="plan === 'dai'" class="transition-all duration-500" style="display: none;">
+                            <span class="text-6xl font-display font-black text-white">890k</span><span class="text-slate-500"> / 30 Ngày</span>
+                            <div class="text-sm font-bold text-yellow-400 mt-2 bg-yellow-400/10 inline-block px-3 py-1 rounded-md">3GB Data 5G/Ngày</div>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10 text-sm font-medium text-white">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-400 mr-3 text-lg"></i> Tốc độ 5G siêu tốc (Docomo/Softbank)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-400 mr-3 text-lg"></i> Hỗ trợ phát Hotspot chia sẻ mạng</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-400 mr-3 text-lg"></i> Quét QR dùng ngay lập tức</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-yellow-400 mr-3 text-lg"></i> Ưu tiên hỗ trợ kỹ thuật 24/7</li>
+                    </ul>
+                    
+                    <a href="auth.html" class="block w-full text-center bg-yellow-400 hover:bg-yellow-500 text-brand-900 font-black py-4 rounded-xl uppercase tracking-widest shadow-[0_0_20px_rgba(250,204,21,0.4)] transition-all">SỞ HỮU NGAY</a>
+                </div>
+
+                <!-- CARD 3: BUSINESS / VIP -->
+                <div class="glass pricing-card vip rounded-3xl p-8 relative overflow-hidden" data-aos="fade-left">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-indigo-500"></div>
+                    <div class="mb-8">
+                        <span class="bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Business</span>
+                        <h3 class="text-3xl font-display font-bold text-white mt-6 mb-2">VIP Network</h3>
+                        <p class="text-slate-400 text-sm">Dành cho doanh nhân, ổn định tuyệt đối.</p>
+                    </div>
+                    
+                    <div class="mb-8 h-24">
+                        <div x-show="plan === 'ngan'" class="transition-all duration-500">
+                            <span class="text-5xl font-display font-black text-white">750k</span><span class="text-slate-500"> / 10 Ngày</span>
+                            <div class="text-sm text-indigo-400 mt-2 font-medium">Băng thông ưu tiên riêng biệt</div>
+                        </div>
+                        <div x-show="plan === 'dai'" class="transition-all duration-500" style="display: none;">
+                            <span class="text-5xl font-display font-black text-white">1,450k</span><span class="text-slate-500"> / 60 Ngày</span>
+                            <div class="text-sm text-indigo-400 mt-2 font-medium">Gói chuyên gia dài hạn</div>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-10 text-sm font-medium text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3 text-lg"></i> Cấp IP tĩnh ưu tiên</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3 text-lg"></i> Đa mạng (Tự chuyển sóng mạnh nhất)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-indigo-400 mr-3 text-lg"></i> Có kèm số điện thoại nhận SMS</li>
+                    </ul>
+                    
+                    <a href="auth.html" class="block w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl uppercase tracking-widest transition-all">Liên Hệ Đặt Gói</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TIMELINE: CÁCH HOẠT ĐỘNG ================= -->
+    <section id="how-it-works" class="py-24 border-t border-white/5 bg-brand-900/30">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-display font-black text-white mb-4">Quy trình <span class="text-indigo-400">Tự Động Hóa 100%</span></h2>
+                <p class="text-slate-400">Không cần chờ đợi nhân viên xác nhận. Mọi thứ diễn ra trong tích tắc bằng công nghệ API.</p>
+            </div>
+            
+            <div class="relative border-l border-white/10 ml-4 md:ml-0 md:border-l-0">
+                <!-- Vạch line giữa cho Desktop -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative flex flex-col md:flex-row items-center mb-16 group" data-aos="fade-up">
+                    <div class="hidden md:flex w-1/2 justify-end pr-12 text-right">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Thanh toán & Xác thực</h3>
+                            <p class="text-sm text-slate-400">Chuyển khoản qua mã QR Auto-Banking. Hệ thống (Python/SQLite) tự động ghi nhận biến động số dư tức thì.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-[-16px] md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-brand-900 border-2 border-indigo-500 flex items-center justify-center text-xs font-bold text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all shadow-[0_0_20px_rgba(99,102,241,0.5)] z-10">1</div>
+                    <div class="md:hidden ml-8 mb-4">
+                        <h3 class="text-xl font-bold text-white mb-2">Thanh toán & Xác thực</h3>
+                        <p class="text-sm text-slate-400">Chuyển khoản qua mã QR Auto-Banking tự động.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex flex-col md:flex-row items-center mb-16 group" data-aos="fade-up">
+                    <div class="hidden md:flex w-1/2 justify-start pl-12 order-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Gọi Nguồn Cấp B2B</h3>
+                            <p class="text-sm text-slate-400">Server tự động gửi request API bảo mật tới nhà mạng tại Nhật Bản (Docomo/Softbank) để xuất một mã eSIM mới tinh.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-[-16px] md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-brand-900 border-2 border-yellow-400 flex items-center justify-center text-xs font-bold text-yellow-400 group-hover:bg-yellow-400 group-hover:text-brand-900 transition-all shadow-[0_0_20px_rgba(250,204,21,0.5)] z-10">2</div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex flex-col md:flex-row items-center group" data-aos="fade-up">
+                    <div class="hidden md:flex w-1/2 justify-end pr-12 text-right">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Gửi QR & Kích hoạt</h3>
+                            <p class="text-sm text-slate-400">Email chứa mã QR và hướng dẫn cài đặt được tự động gửi đến bạn. Chỉ cần quét là lên mạng.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-[-16px] md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-brand-900 border-2 border-green-500 flex items-center justify-center text-xs font-bold text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all shadow-[0_0_20px_rgba(34,197,94,0.5)] z-10">3</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ĐẲNG CẤP ================= -->
+    <footer class="bg-brand-950 border-t border-white/5 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            <div class="md:col-span-5">
+                <a href="#" class="text-4xl font-display font-black text-white tracking-tighter block mb-6">
+                    bin<span class="text-yellow-400">store</span>
+                </a>
+                <p class="text-slate-400 leading-relaxed pr-8 mb-8 text-sm">
+                    Nền tảng thương mại điện tử viễn thông tự động. Cung cấp giải pháp eSIM sỉ lẻ tối ưu nhất cho khách du lịch và du học sinh tại Nhật Bản.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-white hover:border-yellow-400 transition-all"><i class="fa-brands fa-github text-xl"></i></a>
+                    <a href="#" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-white hover:border-yellow-400 transition-all"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-3">
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6">Sản Phẩm</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li><a href="#" class="hover:text-yellow-400 transition">eSIM Du lịch ngắn ngày</a></li>
+                    <li><a href="#" class="hover:text-yellow-400 transition">eSIM Trọn gói (Data Thả ga)</a></li>
+                    <li><a href="#" class="hover:text-yellow-400 transition">Sim Vật lý (Nhận tại Việt Nam)</a></li>
+                    <li><a href="#" class="hover:text-yellow-400 transition">Tích hợp API Doanh nghiệp</a></li>
+                </ul>
+            </div>
+            
+            <div class="md:col-span-4">
+                <h4 class="text-white font-bold uppercase tracking-widest mb-6">Đăng ký nhận Ưu đãi</h4>
+                <p class="text-slate-400 text-sm mb-4">Nhận mã giảm giá 20% cho đơn hàng đầu tiên.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Nhập email của bạn..." class="bg-white/5 border border-white/10 rounded-l-xl px-4 py-3 w-full text-white text-sm focus:outline-none focus:border-yellow-400">
+                    <button class="bg-yellow-400 text-brand-900 font-bold px-6 rounded-r-xl text-sm uppercase">Gửi</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 font-medium tracking-wide">
+            <p>© 2026 binstore Inc. Vận hành tự động từ Kasaoka, Okayama, Japan.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-slate-300 transition">Điều khoản</a>
+                <a href="#" class="hover:text-slate-300 transition">Bảo mật</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 50 });
+    </script>
+</body>
+</html>
